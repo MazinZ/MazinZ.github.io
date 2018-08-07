@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1040 645" enable-background="new 0 0 1040 645" xml:space="preserve">
+	 
+	 <style>
+	 .animate {  
+	 animation: move 3s ease infinite;
+	 -webkit-animation-name: move;
+	 -webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease;
+
+	}
+	
+	
+	
+	
+
+@keyframes move {
+  50% {
+     transform: translate(0px, 20px);
+  	}
+}
+
+@keyframes move2 {
+  50% {
+     transform: translate(0px, 20px);
+  	}
+}
+
+
+@-webkit-keyframes move {
+  50% {
+     -webkit-transform: translate(0px, 20px);
+  	}
+}
+
+@-webkit-keyframes move2 {
+  50% {
+    -webkit-transform: translate(0px, 20px);
+  	}
+}
+
+
+.delay {
+	-webkit-animation-delay:.5s;
+
+	animation-delay:.5s;
+}
+	 </style>
+	 
+<g id="Layer_2">
+	<polygon class='animate' fill="#A2900D" points="434,376.7 434,350.1 458.7,346.7 473.2,354.6 473.1,381.1 448.5,384.6 	"/>
+	<polygon class='animate delay' fill="#E5CC13" points="257.4,216.1 234.7,203.7 234.8,152.5 282.2,145.8 304.9,158.1 304.9,209.5 	"/>
+	<polygon class='animate' fill="#141E3A" points="686.5,494.6 666.1,483.5 666.2,450.8 696.5,446.6 716.9,457.8 716.9,490.4 	"/>
+	<polygon fill="#141E3A" points="781.6,270.7 761.1,259.5 761.1,226.8 791.4,222.6 811.8,233.7 811.8,266.4 	"/>
+</g>
+<g id="Layer_3">
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon class='animate delay' fill="#C8B211" points="607.9,508.7 607.8,541.4 577.6,545.7 577.6,513 					"/>
+				</g>
+				<g>
+					<polygon class='animate delay' fill="#75680A" points="577.6,545.7 557.1,534.5 557.1,501.8 577.6,513 					"/>
+				</g>
+				<g>
+					<polygon class='animate delay' fill="#A2900D" points="577.6,513 557.1,501.8 587.4,497.6 607.9,508.7 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon class='animate' fill="#111A33" points="716.9,457.7 716.8,490.4 686.6,494.7 686.6,462 					"/>
+				</g>
+				<g>
+					<polygon class='animate' fill="#0A0F1E" points="686.6,494.7 666.1,483.5 666.1,450.8 686.6,462 					"/>
+				</g>
+				<g>
+					<polygon class='animate' fill="#0E1529" points="686.6,462 666.1,450.8 696.4,446.6 716.9,457.7 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g enable-background="new    ">
+			<g>
+				<polygon class='animate' fill="#C8B211" points="473.2,354.6 473.1,381.1 448.5,384.6 448.5,358 				"/>
+			</g>
+			<g>
+				<polygon class='animate' fill="#75680A" points="448.5,384.6 434,376.7 434,350.1 448.5,358 				"/>
+			</g>
+			<g>
+				<polygon class='animate' fill="#A2900D" points="448.5,358 434,350.1 458.7,346.7 473.2,354.6 				"/>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon fill="#111A33" points="811.9,233.7 811.8,266.4 781.6,270.7 781.6,238 					"/>
+				</g>
+				<g>
+					<polygon fill="#0A0F1E" points="781.6,270.7 761.1,259.5 761.1,226.8 781.6,238 					"/>
+				</g>
+				<g>
+					<polygon fill="#0E1529" points="781.6,238 761.1,226.8 791.4,222.6 811.9,233.7 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon fill="#0A0F1E" points="486.1,222.8 465.6,211.7 465.6,189.6 486.1,200.7 					"/>
+				</g>
+				<g>
+					<polygon fill="#0E1529" points="465.6,225.7 445.1,214.5 465.6,211.7 486.1,222.8 					"/>
+				</g>
+				<g>
+					<path fill="#111A33" d="M464.7,202.8l22.3-3.1l0,24l-22.3,3.1L464.7,202.8z M486.1,222.8l0-22.1l-20.5,2.9l0,22.1L486.1,222.8"
+						/>
+				</g>
+				<g>
+					<polygon fill="#0E1529" points="464.7,202.8 444.2,191.6 466.5,188.5 487,199.6 					"/>
+				</g>
+				<g>
+					<polygon fill="#0A0F1E" points="464.7,226.8 444.2,215.6 444.2,191.6 464.7,202.8 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon class="animate" fill="#0A0F1E" points="175.7,387.6 152.9,375.2 153.1,304.4 175.9,316.8 					"/>
+				</g>
+				<g>
+					<polygon class="animate" fill="#0E1529" points="110.1,396.8 87.3,384.4 152.9,375.2 175.7,387.6 					"/>
+				</g>
+				<g>
+					<path class="animate" fill="#111A33" d="M109.4,325.2l67.4-9.5l-0.1,72.7l-67.4,9.5L109.4,325.2z M175.7,387.6l0.1-70.8l-65.6,9.2l-0.1,70.8
+						L175.7,387.6"/>
+				</g>
+				<g>
+					<polygon class="animate" fill="#0E1529" points="109.4,325.2 86.6,312.8 154,303.3 176.7,315.7 					"/>
+				</g>
+				<g>
+					<polygon class="animate" fill="#0A0F1E" points="109.3,397.9 86.5,385.5 86.6,312.8 109.4,325.2 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g enable-background="new    ">
+				<g>
+					<polygon class="animate delay" fill="#C8B211" points="305,158.2 304.9,209.4 257.4,216.1 257.5,164.9 					"/>
+				</g>
+				<g>
+					<polygon class="animate delay" fill="#75680A" points="257.4,216.1 234.6,203.7 234.7,152.5 257.5,164.9 					"/>
+				</g>
+				<g>
+					<polygon class="animate delay" fill="#A2900D" points="257.5,164.9 234.7,152.5 282.2,145.8 305,158.2 					"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
