@@ -10,8 +10,8 @@ export function liquidDrops(t:number):Float32Array {
  return new Float32Array([
   -.85+.42*Math.sin(t*.52),.22*Math.sin(t*.36),.08,1.03,
   .85+.79*Math.sin(t*.37+.7),.28*Math.cos(t*.49),-.15,.88,
-  -2.1+.47*Math.cos(t*.43),.5*Math.sin(t*.61+.8),.2*Math.sin(t*.5),.44,
-  2.45+.38*Math.cos(t*.59),.5*Math.cos(t*.43+.4),.25,.3,
+  -2.3+.47*Math.cos(t*.43),.5*Math.sin(t*.61+.8),.2*Math.sin(t*.5),.44,
+  2.7+.38*Math.cos(t*.59),.5*Math.cos(t*.43+.4),.25,.3,
  ]);
 }
 const vertexSource=`attribute vec2 aPosition; void main(){gl_Position=vec4(aPosition,0.0,1.0);}`;
@@ -37,21 +37,25 @@ float droplets(vec3 p){
  q.x+=0.09*sin(p.y*2.2+uWarp.y);
  q.z+=0.10*sin(p.x*1.6+p.y*1.3+uWarp.z);
  float value=drop(q,uDrops[0],vec3(1.12,0.94,1.0));
- value=join(value,drop(q,uDrops[1],vec3(0.98,1.08,0.97)),0.52);
- value=join(value,drop(q,uDrops[2],vec3(1.08,0.89,1.0)),0.39);
- return join(value,drop(q,uDrops[3],vec3(0.94,1.09,1.0)),0.30);
+ value=join(value,drop(q,uDrops[1],vec3(0.98,1.08,0.97)),0.28);
+ // Small detached drops relax to spheres. A shorter blend keeps them from
+ // reaching toward the main volume before they are actually close to contact.
+ value=join(value,length(p-uDrops[2].xyz)-uDrops[2].w,0.14);
+ return join(value,length(p-uDrops[3].xyz)-uDrops[3].w,0.10);
 }
 float surface(vec3 p){
  if(uSplit.y<0.001)return droplets(p);
  // Pull two rounded halves away from the point that was pressed. The cut is
  // fixed during a hold; the droplets keep their independent underlying motion.
- float separation=0.28*uSplit.y;
+ float separation=0.40*uSplit.y;
  vec3 left=p+vec3(separation,0.0,0.0);
  vec3 right=p-vec3(separation,0.0,0.0);
- float curve=0.3*p.y*p.y;
+ // Curve in both cross-sectional axes so a detached face has a rounded cap
+ // in depth as well as in silhouette, rather than a flat, sliced surface.
+ float curve=0.55*dot(p.yz,p.yz);
  float a=-join(-droplets(left),-(left.x-uSplit.x+curve),0.6);
  float b=-join(-droplets(right),-(uSplit.x-right.x+curve),0.6);
- float divided=join(a,b,0.65*(1.0-uSplit.y)+0.03);
+ float divided=join(a,b,0.30*(1.0-uSplit.y)+0.02);
  if(uSplit.y>0.999)return divided;
  return mix(droplets(p),divided,uSplit.y);
 }
