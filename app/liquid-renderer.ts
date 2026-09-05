@@ -19,17 +19,27 @@ export const liquidFragmentSource=`
 precision highp float;
 uniform vec2 uResolution;
 uniform vec4 uDrops[4];
+uniform vec3 uWarp;
 uniform vec3 uIndent;
 uniform vec2 uSplit;
 float join(float a,float b,float k){
  float h=clamp(0.5+0.5*(b-a)/k,0.0,1.0);
  return mix(b,a,h)-k*h*(1.0-h);
 }
+float drop(vec3 p,vec4 body,vec3 stretch){
+ return (length((p-body.xyz)/stretch)-body.w)*min(stretch.x,min(stretch.y,stretch.z));
+}
 float droplets(vec3 p){
- float value=length(p-uDrops[0].xyz)-uDrops[0].w;
- value=join(value,length(p-uDrops[1].xyz)-uDrops[1].w,0.43);
- value=join(value,length(p-uDrops[2].xyz)-uDrops[2].w,0.34);
- return join(value,length(p-uDrops[3].xyz)-uDrops[3].w,0.27);
+ // Keep the rounded volume, but let a slow, shared flow bend its contours.
+ // Unequal proportions and broad distortions soften the spherical primitives.
+ vec3 q=p;
+ q.y+=0.13*sin(p.x*1.8+uWarp.x);
+ q.x+=0.09*sin(p.y*2.2+uWarp.y);
+ q.z+=0.10*sin(p.x*1.6+p.y*1.3+uWarp.z);
+ float value=drop(q,uDrops[0],vec3(1.12,0.94,1.0));
+ value=join(value,drop(q,uDrops[1],vec3(0.98,1.08,0.97)),0.52);
+ value=join(value,drop(q,uDrops[2],vec3(1.08,0.89,1.0)),0.39);
+ return join(value,drop(q,uDrops[3],vec3(0.94,1.09,1.0)),0.30);
 }
 float surface(vec3 p){
  if(uSplit.y<0.001)return droplets(p);
@@ -68,7 +78,7 @@ vec4 tracePixel(vec2 pixel,out float edge){
    float distance=surface(origin+direction*travel);
    closest=min(closest,distance);
    if(distance<0.0005){hit=true;break;}
-   travel+=max(distance*mix(0.9,0.65,uSplit.y),0.0004);
+   travel+=max(distance*mix(0.7,0.58,uSplit.y),0.0004);
    if(travel>6.6)break;
  }
  if(!hit){edge=closest<pixelWorld*1.5?1.0:0.0;return vec4(0.0);}
@@ -126,6 +136,7 @@ export function createLiquid(canvas:HTMLCanvasElement,onReady:(ready:boolean)=>v
  gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
  const position=gl.getAttribLocation(program,'aPosition');gl.enableVertexAttribArray(position);gl.vertexAttribPointer(position,2,gl.FLOAT,false,0,0);
  const resolution=gl.getUniformLocation(program,'uResolution'),drops=gl.getUniformLocation(program,'uDrops[0]'),indent=gl.getUniformLocation(program,'uIndent'),splitUniform=gl.getUniformLocation(program,'uSplit');
+ const warp=gl.getUniformLocation(program,'uWarp');
  const preference=window.matchMedia('(prefers-reduced-motion: reduce)');
  let paused=false,visible=true,available=true,disposed=false,frame=0,last=0,lastDraw=0,elapsed=0;
  let targetX=0,targetY=0,pointerX=0,pointerY=0,targetStrength=0,strength=0;
@@ -139,6 +150,7 @@ export function createLiquid(canvas:HTMLCanvasElement,onReady:(ready:boolean)=>v
   const [x,y]=pointerToLiquid(pointerX,pointerY,width,height);
   gl.viewport(0,0,w,h);gl.uniform2f(resolution,w,h);gl.uniform4fv(drops,liquidDrops(elapsed));gl.uniform3f(indent,x,y,strength);
   gl.uniform2f(splitUniform,splitX,split);
+  gl.uniform3f(warp,elapsed*.24+.5,elapsed*.19+1.2,elapsed*.21);
   gl.drawArrays(gl.TRIANGLES,0,6);
  }
  const running=()=>!paused&&!preference.matches&&visible&&!document.hidden&&available&&!disposed;
